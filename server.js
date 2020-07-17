@@ -31,7 +31,6 @@ client.connect(function (err) {
 app.get('/getAllPosts', (req, res) => {
     getAllPosts()
         .then((result) => {
-            console.log(`Send to client:${result}`)
             res.send(result);
         })
         .catch((err) => {
@@ -41,7 +40,7 @@ app.get('/getAllPosts', (req, res) => {
 
 app.post('/addCommentToPost', (req, res) => {
   
-    const comment = req.body;
+    const comment = req.body.comment;
     addCommentToPost(comment)
         .then((result) => {
             getAllPosts()

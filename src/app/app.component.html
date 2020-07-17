@@ -17,9 +17,10 @@
       <mat-card-footer>
         <div *ngIf="post.comments">
           <h4>Comments</h4>
-          <button mat-button (click)="openAddPostsDialog()">Add Comment</button>
+          <button mat-button (click)="openAddCommentToPostDialog(post._id)">Add Comment</button>
           <div *ngFor="let comment of post.comments">
-            <p>{{comment.user_name}}:{{comment.message}}</p>
+            <p>{{comment.userName}}: {{comment.date}}</p>
+            <div [innerHTML]=" sanitizeMessage(comment.message)"></div>
           </div>
         </div>
       </mat-card-footer>

@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>Add comment</h2>
+<mat-dialog-content [formGroup]="addCommentToPostForm">
+  <label for="message"><jodit-editor name="message" formControlName="message" #editor [config]="{
+            uploader: { insertImageAsBase64URI: 'true' },
+            buttons: 'font,fontsize,brush,paragraph,bold,strikethrough,underline,italic,|,superscript,subscript,|,ul,ol,hr,paragraph,|,align,undo,redo,|,selectall,cut,copy,paste,copyformat'
+            }">
+    </jodit-editor>
+  </label>
+  <mat-dialog-actions>
+    <button class="mat-raised-button mat-primary" [disabled]="!addCommentToPostForm.valid" (click)="save()">Add</button>
+  </mat-dialog-actions>
+</mat-dialog-content>

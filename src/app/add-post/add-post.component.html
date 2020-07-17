@@ -2,7 +2,7 @@
 <mat-dialog-content [formGroup]="addPostForm">
   <label for="title"> Post title: <input name="title" type="text" formControlName="title" required>
   </label>
-  <label  for="body"> body: 
+  <label  for="body"> 
     <jodit-editor name="body" formControlName="body" #editor [config]="{
             uploader: { insertImageAsBase64URI: 'true' },
             buttons: 'font,fontsize,brush,paragraph,bold,strikethrough,underline,italic,|,superscript,subscript,|,ul,ol,hr,paragraph,|,align,undo,redo,|,selectall,cut,copy,paste,copyformat'

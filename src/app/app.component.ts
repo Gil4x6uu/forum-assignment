@@ -5,6 +5,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AddPostDialogComponent } from './add-post/add-post.component';
 import { DomSanitizer } from '@angular/platform-browser';
+import { AddCommentToPostComponent } from './add-comment-to-post/add-comment-to-post.component';
 
 
 
@@ -22,7 +23,7 @@ export class AppComponent implements OnInit {
   public commentForm: FormGroup;
   constructor(
     private postService: PostsService, 
-    public addPostDialog: MatDialog, 
+    public dialog: MatDialog,
     private sanitizer: DomSanitizer) {
     this.commentForm = new FormGroup({
       message: new FormControl(''),
@@ -50,15 +51,15 @@ export class AppComponent implements OnInit {
   openAddPostsDialog(): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
-    const dialogRef = this.addPostDialog.open(AddPostDialogComponent, dialogConfig);
+    const dialogRef = this.dialog.open(AddPostDialogComponent, dialogConfig);
     dialogRef.afterClosed()
-      .subscribe(data => {
-        if (data === undefined) {
+      .subscribe(post => {
+        if (post === undefined) {
 
         }
         else {
-          console.log(data);
-          this.postService.addPostToForum(data)
+          console.log(post);
+          this.postService.addPostToForum(post)
             .subscribe(posts => {
               this.posts = posts
             })
@@ -66,6 +67,27 @@ export class AppComponent implements OnInit {
 
       });
   }
+  openAddCommentToPostDialog(postId: string): void {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    const dialogRef = this.dialog.open(AddCommentToPostComponent, dialogConfig);
+    dialogRef.afterClosed()
+      .subscribe(comment => {
+        if (comment === undefined) {
+
+        }
+        else {
+          comment.post_id = postId;
+          console.log(`comment=>${comment}`);
+          this.postService.addCommentToPost(comment)
+            .subscribe(posts => {
+              this.posts = posts
+            })
+        }
+
+      });
+  }
+
   
    sanitizeMessage(postBody: string){
     return this.sanitizer.bypassSecurityTrustHtml(postBody);

@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { AddPostDialogComponent } from './add-post/add-post.component';
+import { AddCommentToPostComponent } from './add-comment-to-post/add-comment-to-post.component';
 
 
 
@@ -16,7 +17,8 @@ import { AddPostDialogComponent } from './add-post/add-post.component';
 @NgModule({
    declarations: [
       AppComponent,
-      AddPostDialogComponent
+      AddPostDialogComponent,
+      AddCommentToPostComponent
    ],
    imports: [
       BrowserModule,
@@ -29,10 +31,11 @@ import { AddPostDialogComponent } from './add-post/add-post.component';
       FormsModule,
       MatDialogModule
    ],
-  entryComponents: [
-     AddPostDialogComponent
-  ],
-  providers: [],
+   entryComponents: [
+      AddPostDialogComponent,
+      AddCommentToPostComponent
+   ],
+   providers: [],
    bootstrap: [
       AppComponent
    ]

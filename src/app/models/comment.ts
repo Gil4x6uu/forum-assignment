@@ -4,7 +4,8 @@ export class Comment {
 
     post_id: string;
     message: string;
-    user_name: string;
+    userName: string;
+    date: string;
  
 
 
