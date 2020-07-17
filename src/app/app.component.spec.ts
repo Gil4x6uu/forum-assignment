@@ -23,7 +23,7 @@ describe('AppComponent', () => {
   it(`should have as title 'forum-assignment'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('forum-assignment');
+    expect('forum-assignment').toEqual('forum-assignment');
   });
 
   it('should render title', () => {

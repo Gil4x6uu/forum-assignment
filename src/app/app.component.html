@@ -1,15 +1,28 @@
-
-<div *ngFor="let post of posts">
-  <mat-card>{{post.title}}</mat-card>
+<h1>Welcome to DevDino forum</h1>
+<div *ngIf="!enterForum">
+  <label> Enter Your NickName:</label>
+  <input type="text" [(ngModel)]="userName">
+  <button (click)="updateName()">Sign in</button>
 </div>
-
-<form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
-  <label> Comment:</label>
-  <jodit-editor formControlName="message" #editor  [config]="{
-          uploader: { insertImageAsBase64URI: 'true' },
-          buttons: 'font,fontsize,brush,paragraph,bold,strikethrough,underline,italic,|,superscript,subscript,|,ul,ol,hr,paragraph,|,align,undo,redo,|,selectall,cut,copy,paste,copyformat'
-          }">   
-  </jodit-editor>
-  <button type="submit" [disabled]="!commentForm.valid">Submit</button>
-</form>
-
+<div *ngIf="enterForum">
+  <h3>Welcome {{this.userName}}</h3>
+  <h3>DevDino Posts</h3>
+  <button mat-button (click)="openAddPostsDialog()">Add Post</button>
+  <div class="postsCards" *ngFor="let post of posts">
+    <mat-card>
+      <mat-card-title>Post title: {{post.title}}</mat-card-title>
+      <mat-card-content>
+        <div [innerHTML]=" sanitizeMessage(post.body)"></div> {{post.userName}} : {{post.date}}
+      </mat-card-content>
+      <mat-card-footer>
+        <div *ngIf="post.comments">
+          <h4>Comments</h4>
+          <button mat-button (click)="openAddPostsDialog()">Add Comment</button>
+          <div *ngFor="let comment of post.comments">
+            <p>{{comment.user_name}}:{{comment.message}}</p>
+          </div>
+        </div>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+</div>

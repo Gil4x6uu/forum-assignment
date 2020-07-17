@@ -55,7 +55,7 @@ app.post('/addCommentToPost', (req, res) => {
 })
 
 app.post('/addPostToForum', (req, res) => {
-    const post = req.body;
+    const post = req.body.post;
     addPostToForum(post)
         .then((result) => {
             getAllPosts()
