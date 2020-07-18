@@ -10,7 +10,6 @@ import { AddCommentToPostComponent } from './add-comment-to-post/add-comment-to-
 
 
 
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -19,7 +18,7 @@ import { AddCommentToPostComponent } from './add-comment-to-post/add-comment-to-
 export class AppComponent implements OnInit {
   public posts: Post[] = [];
   public userName: string;
-  public enterForum: boolean = false;
+  public isUserSignIn: boolean = false;
   public commentForm: FormGroup;
   constructor(
     private postService: PostsService, 
@@ -35,14 +34,14 @@ export class AppComponent implements OnInit {
         this.posts = posts;
       });
     if (localStorage.getItem('userName') !== null) {
-      this.enterForum = true;
+      this.isUserSignIn = true;
       this.userName = localStorage.getItem('userName');
     }
   }
-  updateName(): void {
+  updateUserName(): void {
     if (this.userName !== "") {
       localStorage.setItem('userName', this.userName);
-      this.enterForum = true;
+      this.isUserSignIn = true;
     }
     else {
 
@@ -88,7 +87,13 @@ export class AppComponent implements OnInit {
       });
   }
 
-  
+  logOut():void{
+    localStorage.clear();
+    this.userName = "";
+    this.isUserSignIn = false;
+    
+    
+  }
    sanitizeMessage(postBody: string){
     return this.sanitizer.bypassSecurityTrustHtml(postBody);
   }

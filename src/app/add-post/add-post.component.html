@@ -1,8 +1,10 @@
 <h2 mat-dialog-title>Add post</h2>
 <mat-dialog-content [formGroup]="addPostForm">
-  <label for="title"> Post title: <input name="title" type="text" formControlName="title" required>
-  </label>
-  <label  for="body"> 
+  <mat-form-field appearance="outline">
+    <mat-label for="title"> Post title: </mat-label>
+    <input matInput name="title" type="text" formControlName="title" placeholder=" Describe the post subject" required>
+  </mat-form-field>
+  <label for="body">
     <jodit-editor name="body" formControlName="body" #editor [config]="{
             uploader: { insertImageAsBase64URI: 'true' },
             buttons: 'font,fontsize,brush,paragraph,bold,strikethrough,underline,italic,|,superscript,subscript,|,ul,ol,hr,paragraph,|,align,undo,redo,|,selectall,cut,copy,paste,copyformat'
@@ -10,6 +12,6 @@
     </jodit-editor>
   </label>
   <mat-dialog-actions>
-    <button class="mat-raised-button mat-primary" [disabled]="!addPostForm.valid" (click)="save()">Add</button>
+    <button button mat-raised-button color="primary" [disabled]="!addPostForm.valid" (click)="save()">Add</button>
   </mat-dialog-actions>
 </mat-dialog-content>

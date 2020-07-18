@@ -1,6 +1,62 @@
+.wraper{
+    display: flex;
+    flex-flow: column wrap;
+}
+header{
+    display: flex;
+    flex-flow: column wrap;
+    background-color: #76B947;
+
+}
+.h1{
+    text-align: center;
+}
+.logoutAndWelcome{
+    display: flex;
+    flex-flow: column nowrap;
+    align-self:flex-start;
+    margin: 10px;
+}
+
+body{
+    display: flex;
+    flex-flow: column wrap;
+}
+.welcomeScreen{
+    display: flex;
+    flex:50%;
+    flex-flow: column wrap;
+    align-self:center;
+}
+.postsScreen{
+    display: flex;
+    flex-flow: column wrap;
+}
+.addPostButton{
+    align-self:center;
+    margin-top: 1rem;
+}
 .postsCards{
+    display: block;
+    position: relative;
+    left: 25%;
     width: 50%;
-    margin: 20px;
-    text-align: left;    
+    height: auto;
+    margin: 30px;   
+}
+
+mat-card-content{
+  margin: auto;  
+  padding: 20px;
+  background-color:#E2E4E7 ;
+}
+
+
+@media only screen and (max-width: 800px) {
+.postsCards{
+    width: fit-content;
+    height: auto;
+    left:10%;
+}
 }
 

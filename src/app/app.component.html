@@ -1,29 +1,51 @@
-<h1>Welcome to DevDino forum</h1>
-<div *ngIf="!enterForum">
-  <label> Enter Your NickName:</label>
-  <input type="text" [(ngModel)]="userName">
-  <button (click)="updateName()">Sign in</button>
-</div>
-<div *ngIf="enterForum">
-  <h3>Welcome {{this.userName}}</h3>
-  <h3>DevDino Posts</h3>
-  <button mat-button (click)="openAddPostsDialog()">Add Post</button>
-  <div class="postsCards" *ngFor="let post of posts">
-    <mat-card>
-      <mat-card-title>Post title: {{post.title}}</mat-card-title>
-      <mat-card-content>
-        <div [innerHTML]=" sanitizeMessage(post.body)"></div> {{post.userName}} : {{post.date}}
-      </mat-card-content>
-      <mat-card-footer>
-        <div *ngIf="post.comments">
-          <h4>Comments</h4>
-          <button mat-button (click)="openAddCommentToPostDialog(post._id)">Add Comment</button>
-          <div *ngFor="let comment of post.comments">
-            <p>{{comment.userName}}: {{comment.date}}</p>
-            <div [innerHTML]=" sanitizeMessage(comment.message)"></div>
-          </div>
-        </div>
-      </mat-card-footer>
-    </mat-card>
-  </div>
+<div class="wraper">
+  <header>
+    <div class="logoutAndWelcome" *ngIf="isUserSignIn">
+      <div>Hey {{this.userName}}</div>
+      <button button mat-fab color="warn" (click)="logOut()">LogOut</button>
+    </div>
+    <div class="h1">
+      <h1>Welcome to Dino forum</h1>
+    </div>
+  </header>
+
+  <body>
+    <div class="welcomeScreen" *ngIf="!isUserSignIn">
+      <mat-form-field appearance="outline">
+        <mat-label> Enter Your NickName:</mat-label>
+        <input matInput type="text" [(ngModel)]="userName">
+      </mat-form-field>
+      <button button mat-raised-button color="primary" (click)="updateUserName()">Sign in</button>
+    </div>
+    <div class="postsScreen" *ngIf="isUserSignIn">
+      <div class="addPostButton">
+        <button button mat-raised-button color="primary" (click)="openAddPostsDialog()">Add Post</button>
+      </div>
+      <div class="postsCards" *ngFor="let post of posts">
+        <mat-card>
+          <mat-card-title>Title: {{post.title}}</mat-card-title>
+          <mat-card-subtitle>{{post.userName}} : {{post.date}}</mat-card-subtitle>
+          <mat-card-content>
+            <div [innerHTML]=" sanitizeMessage(post.body)"></div>
+          </mat-card-content>
+
+          <mat-card-footer>
+            <div class="commentsCards" *ngIf="post.comments">
+              <mat-card>
+                <h4>Comments</h4>
+                <button button mat-button color="primary" (click)="openAddCommentToPostDialog(post._id)">Add
+                  Comment</button>
+                <div *ngFor="let comment of post.comments"> {{comment.userName}}: <div
+                    [innerHTML]=" sanitizeMessage(comment.message)"></div>
+                  <p> {{comment.date}}</p>
+                  <hr>
+                </div>
+              </mat-card>
+            </div>
+            
+          </mat-card-footer>
+        </mat-card>
+      </div>
+    </div>
+  </body>
 </div>

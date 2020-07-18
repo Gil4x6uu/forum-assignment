@@ -12,26 +12,26 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 export class AddPostDialogComponent implements OnInit {
   addPostForm: FormGroup;
   newPost: Post;
-  
+
   constructor(
-    private formBuilder: FormBuilder, 
-    private dialogRef: MatDialogRef<AddPostDialogComponent>, 
+    private formBuilder: FormBuilder,
+    private dialogRef: MatDialogRef<AddPostDialogComponent>,
     @Inject(MAT_DIALOG_DATA) data
-    ) {
+  ) {
     this.addPostForm = this.formBuilder.group({
       title: ['', Validators.required],
       body: ['', Validators.required],
     });
-   }
+  }
 
   ngOnInit() {
   }
-  save(){
+  save() {
     console.log("inside on submit")
     this.newPost = new Post(this.addPostForm.value);
     this.newPost.userName = localStorage.getItem("userName");
     this.newPost.date = new Date().toLocaleString();
-    this.newPost.comments = []; 
+    this.newPost.comments = [];
     this.dialogRef.close(this.newPost);
   }
 }
