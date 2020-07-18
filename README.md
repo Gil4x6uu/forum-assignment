@@ -1,6 +1,7 @@
-# DevDIno - ForumAssignment
+# DevDIno - Forum 
 
-Simple forum web app with "Jodit" - a rich text editor
+Simple forum web app with "Jodit" - a rich text editor.
+Build with Angular and MongoDB.
 
 ### Installation and Setup Instructions:
 Clone down this repository. You will need [node](https:https://nodejs.org/en/) and [npm](https:https://nodejs.org/en/) installed globally on your machine. 
@@ -13,9 +14,5 @@ To Start Server:
 ```bash
 npm start  
 ```
-And then
-```bash
-node app.js
-````
 To Visit App:
 [http://localhost:4200]
