@@ -27,7 +27,6 @@ client.connect(function (err) {
 
 
 
-//return the stores
 app.get('/getAllPosts', (req, res) => {
     getAllPosts()
         .then((result) => {
@@ -87,7 +86,7 @@ async function addCommentToPost(comment) {
     return collection.findOneAndUpdate({ _id: new ObjectID(comment.post_id)  }, { $push: { comments: comment } });
 }
 
-// LISTEN ON PORT
+
 app.listen(port, () =>
     console.log(`API RUNNING ON LOCALHOST: ${port}`)
 );

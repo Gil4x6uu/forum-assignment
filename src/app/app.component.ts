@@ -1,7 +1,6 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Post } from './models/post';
 import { PostsService } from './posts.service';
-import { FormGroup, FormControl } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AddPostDialogComponent } from './add-post/add-post.component';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -19,14 +18,11 @@ export class AppComponent implements OnInit {
   public posts: Post[] = [];
   public userName: string;
   public isUserSignIn: boolean = false;
-  public commentForm: FormGroup;
+
   constructor(
     private postService: PostsService, 
     public dialog: MatDialog,
     private sanitizer: DomSanitizer) {
-    this.commentForm = new FormGroup({
-      message: new FormControl(''),
-    });
   }
   ngOnInit() {
     this.postService.getAllPosts()

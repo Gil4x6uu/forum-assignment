@@ -33,7 +33,7 @@
             <div class="commentsCards" *ngIf="post.comments">
               <mat-card>
                 <h4>Comments</h4>
-                <button button mat-button color="primary" (click)="openAddCommentToPostDialog(post._id)">Add
+                <button button  mat-stroked-button color="primary" (click)="openAddCommentToPostDialog(post._id)">Add
                   Comment</button>
                 <div *ngFor="let comment of post.comments"> {{comment.userName}}: <div
                     [innerHTML]=" sanitizeMessage(comment.message)"></div>
